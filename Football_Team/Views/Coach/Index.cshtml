@@ -1,0 +1,44 @@
+﻿@model IList<Coach>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-primary" role="alert">
+        @TempData["Success"]
+    </div>
+}
+<div style="overflow-x:scroll">
+
+    <div style="margin-bottom:50px">
+        <a href="/Coach/Create" class="btn btn-outline-warning" style="width:1500px">Add new Team</a>
+    </div>
+
+    <table class="table table-bordered" style="width:1500px;">
+        <thead class="bg-register-image">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Team</th>
+                <th>Edit/Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>@Html.Raw(item.Name)</td>
+                    <td>@Html.Raw(item.Team)</td>
+                    <td>
+                        <a href="/Coach/Edit/@item.Id" style="color:red"><i class="fas fa-edit"></i></a>
+                        <a href="/Coach/Delete/@item.Id" onclick="return confirm('Silmek isdediyinizden eminsinizmi?')" style="color:red"><i class="fas fa-trash-alt"></i></a>
+                        <br />
+                        <a href="/Coach/Details/@item.Id" style="color:red">Etrafli</a>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>

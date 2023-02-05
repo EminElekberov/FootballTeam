@@ -1,0 +1,36 @@
+﻿@model Coach
+
+@section styles{
+    @*bunu ona gore yazdiqki burda yazilan css shared papkasinda loayout.cshtml icerisinde render ede bilek*@
+    <style>
+        label {
+            color: red;
+        }
+    </style>
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div style="height:800px;">
+        @if (Model.Name != null)
+        {
+
+
+            <div class="mb-3">
+                <label>Category</label>
+                <select asp-for="TeamId" class="form-control" style="width:600px;">
+                    @foreach (var item in ViewBag.Categorys)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Name</label>
+            <textarea class="form-control" asp-for="Name"></textarea>
+            <span asp-validation-for="Name" style="color:red"></span>
+        </div>
+
+        }
+        <button type="submit" class="btn btn-primary" style="margin-bottom:50px;">Submit</button>
+    </div>
+</form>
